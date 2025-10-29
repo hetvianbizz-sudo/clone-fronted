@@ -15,7 +15,7 @@ export const SocketContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (authUser) {
-			const socket = io("https://chembizz-app.vercel.app", {
+			const socket = io("https://chembizz-backend.onrender.com", {
 			// const socket = io("https://api.chembizz.in", {
 				query: {
 					userId: authUser.id,
