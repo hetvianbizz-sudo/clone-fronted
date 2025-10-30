@@ -1059,7 +1059,7 @@ const SellingInquiry = () => {
             return (
               <div key={index} className="border-[3px] border-gray-200 rounded-[25px] py-4 cursor-pointer" onClick={() => handleNavigate(item)}>
                 <div className='grid grid-cols-[1fr,1fr] sm:mb-0 mb-2 px-5'>
-                  <div className="mr-4 relative">
+                  <div className="mr-4 relative z-0">
                     <div
                       className="absolute inset-0 bg-center bg-contain bg-no-repeat z-0"
                       style={{
@@ -1067,11 +1067,11 @@ const SellingInquiry = () => {
                         opacity: 0.7 // Make background logo semi-transparent
                       }}
                     ></div>
-                    <img src={correctImageUrl} alt="" className="w-[100px] h-[100px] relative z-10" />
+                    <img src={correctImageUrl} alt="" className="w-[100px] h-[100px] relative  z-[1]" />
                     <button
                       onClick={(event) => handleDownload(correctImageUrl, event)}
                       disabled={downloading}
-                      className="absolute top-0 right-0 bg-gray-200 hover:bg-gray-300 rounded p-1 z-20"
+                      className="absolute top-0 right-0 bg-gray-200 hover:bg-gray-300 rounded p-1 z-[2]"
                       title="Download image"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -293,8 +293,7 @@ const CreditDebitNote = ({ data, returnRequestdata }) => {
     0
   );
 
-  console.log(data, "ddd");
-
+ 
   return (
     <div className="bg-transparent flex flex-col items-center justify-center">
       <div className="flex gap-5 mb-4">

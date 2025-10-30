@@ -20,35 +20,35 @@ const Buycard = ({ dataArray }) => {
     const handleDownload = async (structureImg, e) => {
         e.stopPropagation();
         setDownloading(true);
-        
+
         try {
             // Create a canvas to combine the images
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            
+
             // Load both images
             const backgroundImg = new Image();
             backgroundImg.crossOrigin = "Anonymous";
             backgroundImg.src = chemicalLogo;
-            
+
             const foregroundImg = new Image();
             foregroundImg.crossOrigin = "Anonymous";
             foregroundImg.src = structureImg;
-            
+
             // Wait for both images to load
             await Promise.all([
                 new Promise(resolve => { backgroundImg.onload = resolve; }),
                 new Promise(resolve => { foregroundImg.onload = resolve; })
             ]);
-            
+
             // Set canvas dimensions
             canvas.width = foregroundImg.width;
             canvas.height = foregroundImg.height;
-            
+
             // Draw background (scaled to fit)
             const bgAspect = backgroundImg.width / backgroundImg.height;
             const fgAspect = foregroundImg.width / foregroundImg.height;
-            
+
             if (bgAspect > fgAspect) {
                 // Background is wider relative to its height than foreground
                 const bgHeight = foregroundImg.height;
@@ -60,10 +60,10 @@ const Buycard = ({ dataArray }) => {
                 const bgHeight = bgWidth / bgAspect;
                 ctx.drawImage(backgroundImg, 0, (foregroundImg.height - bgHeight) / 2, bgWidth, bgHeight);
             }
-            
+
             // Draw the chemical structure image on top
             ctx.drawImage(foregroundImg, 0, 0);
-            
+
             // Create download link
             const link = document.createElement('a');
             link.download = 'chemical-with-logo.png';
@@ -72,7 +72,7 @@ const Buycard = ({ dataArray }) => {
         } catch (error) {
             console.error('Error downloading image:', error);
         }
-        
+
         setDownloading(false);
     };
 
@@ -83,23 +83,23 @@ const Buycard = ({ dataArray }) => {
                     <div key={index}>
                         <div className='rounded-lg bg-white px-4 py-3 shadow h-full'>
                             <div className='flex flex-col h-full items-center'>
-                                <div className="relative w-full flex justify-center">
-                                    <div 
+                                <div className="relative w-full flex justify-center z-0"> {/* lowered base z-index */}
+                                    <div
                                         className="absolute inset-0 bg-center bg-contain bg-no-repeat z-0"
-                                        style={{ 
+                                        style={{
                                             backgroundImage: `url(${chemicalLogo})`,
-                                            opacity: 0.8 ,
+                                            opacity: 0.8,
                                         }}
                                     ></div>
                                     <img
                                         src={e.structure}
                                         alt={e.name_of_chemical}
-                                        className={`relative z-10 ${e.structure === "https://chembizzstorage.blob.core.windows.net/chembizz-files/chembizzchem.png" ? 'w-[70%]' : ''}`}
+                                        className={`relative z-[1] ${e.structure === "https://chembizzstorage.blob.core.windows.net/chembizz-files/chembizzchem.png" ? 'w-[70%]' : ''}`}
                                     />
-                                    <button 
+                                    <button
                                         onClick={(event) => handleDownload(e.structure, event)}
                                         disabled={downloading}
-                                        className="absolute top-0 right-0 bg-gray-200 hover:bg-gray-300 rounded p-1 z-20"
+                                        className="absolute top-0 right-0 bg-gray-200 hover:bg-gray-300 rounded p-1 z-[2]"
                                         title="Download image"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -107,10 +107,11 @@ const Buycard = ({ dataArray }) => {
                                         </svg>
                                     </button>
                                 </div>
+
                                 <div className='flex justify-between pt-3'>
                                     <h3 className='font-medium text-xl'>{e.name_of_chemical?.slice(0, 15)}</h3>
                                     {e.verified == false && <img className='w-[25px] h-[25px]' src="https://chembizzstorage.blob.core.windows.net/chembizz-files/unverify_selected_logo.png" alt="" />}
-                                    
+
                                 </div>
                                 <div className='md:flex block justify-between mt-2 mb-4'>
                                     <div>

@@ -2263,18 +2263,18 @@ const Buying_inquiry_detail = () => {
                   {userPost === "seller" ? (
                     <div className="overflow-x-auto sm:overflow-x-visible">
                       <div
-                        className="relative flex justify-between mb-8 mx-5"
-                        style={{ width: `${totalWidth}%` }} // Tailwind can't compile w-[${...}%]
+                        className="relative flex justify-between mb-8 mx-5 z-0" // ⬅ added z-0 to base container
+                        style={{ width: `${totalWidth}%` }}
                       >
                         {/* base line */}
                         <div
-                          className="absolute left-0 top-1/2 -translate-y-1/2 h-[10px] w-full rounded z-0"
+                          className="absolute left-0 top-1/2 -translate-y-1/2 h-[10px] w-full rounded z-[1]" // ⬅ lower layer
                           style={{ backgroundColor: "rgba(169,169,169,0.5)" }}
                         />
 
                         {/* progress line */}
                         <div
-                          className="absolute left-0 top-1/2 -translate-y-1/2 h-[10px] rounded z-0"
+                          className="absolute left-0 top-1/2 -translate-y-1/2 h-[10px] rounded z-[2]" // ⬅ slightly above base line
                           style={{
                             width: `${Math.min(
                               (userPost === "seller"
@@ -2302,7 +2302,7 @@ const Buying_inquiry_detail = () => {
                             "";
 
                           return (
-                            <div key={index} className="text-center relative z-10">
+                            <div key={index} className="text-center relative z-[3]"> {/* ⬅ reduced from z-10 to z-[3] */}
                               <img
                                 src={imageFunction(status)}
                                 alt=""
@@ -2322,6 +2322,7 @@ const Buying_inquiry_detail = () => {
                         })}
                       </div>
                     </div>
+
                   ) : (
                     /* BUYER SIDE - UPDATED */
                     <div className="overflow-x-auto sm:overflow-x-visible">
@@ -2470,47 +2471,60 @@ const Buying_inquiry_detail = () => {
                               </div>
 
                               {selectedReturnRequest === request._id && (
-                                <div className="bg-gray-50 p-3 rounded-lg">
-                                  <div className="relative mb-6">
+                                <div className="bg-gray-50 p-3 rounded-lg relative z-0"> {/* added z-0 here */}
+                                  <div className="relative mb-6 z-[1]"> {/* lowered base layer */}
                                     {/* Progress Line */}
                                     <div
-                                      className={`absolute ${isRejectedFlow ? "mr-[120px] ml-[120px]" : "mr-[45px] ml-[45px]"} left-0 right-0 top-5 h-1 bg-gray-300 z-0`}
+                                      className={`absolute ${isRejectedFlow ? "mr-[120px] ml-[120px]" : "mr-[50px] ml-[50px]"
+                                        } left-0 right-0 top-5 h-1 bg-gray-300 z-[1]`}
                                     >
                                       <div
-                                        className={`h-full transition-all duration-500 ${isRejectedFlow ? "bg-red-500" : ""}`}
+                                        className={`h-full transition-all duration-500 ${isRejectedFlow ? "bg-red-500" : ""
+                                          }`}
                                         style={{
-                                          // ✅ Return flow primary color (blue) instead of green
                                           backgroundColor: !isRejectedFlow ? "#007BCE" : undefined,
                                           width: `${isCompletedStatus || request.status === "rejected"
-                                              ? 100
-                                              : (currentReturnStatusIndex / (currentFlowStatuses.length - 1)) * 100
+                                            ? 100
+                                            : (currentReturnStatusIndex /
+                                              (currentFlowStatuses.length - 1)) *
+                                            100
                                             }%`,
                                         }}
                                       ></div>
                                     </div>
 
                                     {/* Status Items */}
-                                    <div className="flex justify-between relative">
+                                    <div className="flex justify-between relative z-[2]"> {/* lowered to 2 */}
                                       {currentFlowStatuses.map((status, index) => {
                                         const isCompleted =
                                           isCompletedStatus ||
                                           request.status === "rejected" ||
                                           index <= currentReturnStatusIndex;
 
-                                        const isRejectedPoint = isRejectedFlow && status === "rejected";
+                                        const isRejectedPoint =
+                                          isRejectedFlow && status === "rejected";
 
                                         return (
-                                          <div key={index} className="text-center relative z-10 flex-1">
+                                          <div
+                                            key={index}
+                                            className="text-center relative z-[3] flex-1" // lowered to 3
+                                          >
                                             {/* Status Icon */}
                                             <div
                                               className={`mx-auto w-10 h-10 rounded-full flex items-center justify-center ${isCompleted ? "" : "bg-gray-400"
                                                 }`}
                                               style={{
-                                                // ✅ Use blue for completed steps (except the rejected step which stays red)
-                                                backgroundColor: isCompleted && !isRejectedPoint ? "#007BCE" : undefined,
+                                                backgroundColor:
+                                                  isCompleted && !isRejectedPoint
+                                                    ? "#007BCE"
+                                                    : undefined,
                                               }}
                                             >
-                                              <img src={getReturnStatusImage(status)} alt="" className="w-5 h-5 filter brightness-0 invert" />
+                                              <img
+                                                src={getReturnStatusImage(status)}
+                                                alt=""
+                                                className="w-5 h-5 filter brightness-0 invert"
+                                              />
                                             </div>
 
                                             {/* Status Label */}
@@ -2519,13 +2533,17 @@ const Buying_inquiry_detail = () => {
                                             </p>
 
                                             {/* Status Date */}
-                                            {returnStatusHistory.find((item) => item.status === status) && (
-                                              <p className="text-[10px] text-gray-500 mt-1 text-center">
-                                                {formatDate(
-                                                  returnStatusHistory.find((item) => item.status === status)?.dateAndTime
-                                                ) || ""}
-                                              </p>
-                                            )}
+                                            {returnStatusHistory.find(
+                                              (item) => item.status === status
+                                            ) && (
+                                                <p className="text-[10px] text-gray-500 mt-1 text-center">
+                                                  {formatDate(
+                                                    returnStatusHistory.find(
+                                                      (item) => item.status === status
+                                                    )?.dateAndTime
+                                                  ) || ""}
+                                                </p>
+                                              )}
                                           </div>
                                         );
                                       })}
@@ -2533,23 +2551,26 @@ const Buying_inquiry_detail = () => {
                                   </div>
 
                                   {/* Current Status */}
-                                  <div className="text-center mt-4">
+                                  <div className="text-center mt-4 z-[1]">
                                     <p className="text-sm font-semibold">
                                       Current Status:{" "}
                                       <span
                                         className={`${isCompletedStatus
-                                            ? "text-green-600"
-                                            : request.status === "rejected"
-                                              ? "text-red-600"
-                                              : "text-blue-600"
+                                          ? "text-green-600"
+                                          : request.status === "rejected"
+                                            ? "text-red-600"
+                                            : "text-blue-600"
                                           }`}
                                       >
-                                        {formatReturnStatus(request.status).toUpperCase().replace(/_/g, ' ')}
+                                        {formatReturnStatus(request.status)
+                                          .toUpperCase()
+                                          .replace(/_/g, " ")}
                                       </span>
                                     </p>
                                   </div>
                                 </div>
                               )}
+
                             </div>
 
                           </div>
@@ -4058,27 +4079,27 @@ const Buying_inquiry_detail = () => {
                               DDP - Delivered Duty Paid
                             </option>
                           </select>
-                           <option value="FCA – Free Carrier">
-                              FCA – Free Carrier
-                            </option>
-                            <option value="FAS – Free Alongside Ship">
-                              FAS – Free Alongside Ship
-                            </option>
-                            <option value="CFR – Cost and Freight">
-                              CFR – Cost and Freight
-                            </option>
-                            <option value="CPT – Carriage Paid To">
-                              CPT – Carriage Paid To
-                            </option>
-                            <option value="CIP – Carriage & Insurance Paid To">
-                              CIP – Carriage & Insurance Paid To
-                            </option>
-                            <option value="DPU – Delivered At Pace Unloaded">
-                              DPU – Delivered At Pace Unloaded
-                            </option>
-                            <option value="DAP – Delivered At Place">
-                              DAP – Delivered At Place
-                            </option>
+                          <option value="FCA – Free Carrier">
+                            FCA – Free Carrier
+                          </option>
+                          <option value="FAS – Free Alongside Ship">
+                            FAS – Free Alongside Ship
+                          </option>
+                          <option value="CFR – Cost and Freight">
+                            CFR – Cost and Freight
+                          </option>
+                          <option value="CPT – Carriage Paid To">
+                            CPT – Carriage Paid To
+                          </option>
+                          <option value="CIP – Carriage & Insurance Paid To">
+                            CIP – Carriage & Insurance Paid To
+                          </option>
+                          <option value="DPU – Delivered At Pace Unloaded">
+                            DPU – Delivered At Pace Unloaded
+                          </option>
+                          <option value="DAP – Delivered At Place">
+                            DAP – Delivered At Place
+                          </option>
                         </div>
                       </div>
                     </div>

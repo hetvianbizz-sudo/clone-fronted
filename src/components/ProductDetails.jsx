@@ -196,7 +196,7 @@ const ProductDetails = () => {
     return (
         <>
             <div className=''>
-                <div className='profile-container'>
+                <div className=''>
                     <div className="w-full overflow-x-hidden">
                         <div className="flex flex-col p-2">
                             <div className=''>

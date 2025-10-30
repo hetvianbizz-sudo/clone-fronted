@@ -1331,7 +1331,7 @@ const Editinvoice = () => {
                                                 <option value="30 Days Credit">Credit (30 Days)</option>
                                                 <option value="45 Days Credit">Credit (45 Days)</option>
                                                 <option value="60 Days Credit">Credit (60 Days)</option>
-                            <option value="90 Days Credit">Credit (90 Days)</option>
+                                                <option value="90 Days Credit">Credit (90 Days)</option>
                                             </select>
                                         </p>
                                     </div>
@@ -1468,26 +1468,26 @@ const Editinvoice = () => {
                                                         <option value="CIF - Cost, insurance & Fright" >CIF - Cost, insurance & Fright</option>
                                                         <option value="DDP - Delivered Duty Paid" >DDP - Delivered Duty Paid</option>
                                                         <option value="FCA – Free Carrier">
-                                                        FCA – Free Carrier
-                                                    </option>
-                                                    <option value="FAS – Free Alongside Ship">
-                                                        FAS – Free Alongside Ship
-                                                    </option>
-                                                    <option value="CFR – Cost and Freight">
-                                                        CFR – Cost and Freight
-                                                    </option>
-                                                    <option value="CPT – Carriage Paid To">
-                                                        CPT – Carriage Paid To
-                                                    </option>
-                                                    <option value="CIP – Carriage & Insurance Paid To">
-                                                        CIP – Carriage & Insurance Paid To
-                                                    </option>
-                                                    <option value="DPU – Delivered At Pace Unloaded">
-                                                        DPU – Delivered At Pace Unloaded
-                                                    </option>
-                                                    <option value="DAP – Delivered At Place">
-                                                        DAP – Delivered At Place
-                                                    </option>
+                                                            FCA – Free Carrier
+                                                        </option>
+                                                        <option value="FAS – Free Alongside Ship">
+                                                            FAS – Free Alongside Ship
+                                                        </option>
+                                                        <option value="CFR – Cost and Freight">
+                                                            CFR – Cost and Freight
+                                                        </option>
+                                                        <option value="CPT – Carriage Paid To">
+                                                            CPT – Carriage Paid To
+                                                        </option>
+                                                        <option value="CIP – Carriage & Insurance Paid To">
+                                                            CIP – Carriage & Insurance Paid To
+                                                        </option>
+                                                        <option value="DPU – Delivered At Pace Unloaded">
+                                                            DPU – Delivered At Pace Unloaded
+                                                        </option>
+                                                        <option value="DAP – Delivered At Place">
+                                                            DAP – Delivered At Place
+                                                        </option>
                                                     </select></p>
                                             </div>
                                         </td>
@@ -1600,6 +1600,27 @@ const Editinvoice = () => {
                                                         <option value="FOB - Free on Board" >FOB - Free on Board</option>
                                                         <option value="CIF - Cost, insurance & Fright" >CIF - Cost, insurance & Fright</option>
                                                         <option value="DDP - Delivered Duty Paid" >DDP - Delivered Duty Paid</option>
+                                                        <option value="FCA – Free Carrier">
+                                                            FCA – Free Carrier
+                                                        </option>
+                                                        <option value="FAS – Free Alongside Ship">
+                                                            FAS – Free Alongside Ship
+                                                        </option>
+                                                        <option value="CFR – Cost and Freight">
+                                                            CFR – Cost and Freight
+                                                        </option>
+                                                        <option value="CPT – Carriage Paid To">
+                                                            CPT – Carriage Paid To
+                                                        </option>
+                                                        <option value="CIP – Carriage & Insurance Paid To">
+                                                            CIP – Carriage & Insurance Paid To
+                                                        </option>
+                                                        <option value="DPU – Delivered At Pace Unloaded">
+                                                            DPU – Delivered At Pace Unloaded
+                                                        </option>
+                                                        <option value="DAP – Delivered At Place">
+                                                            DAP – Delivered At Place
+                                                        </option>
                                                     </select></p>
                                             </div>
                                         </td>

@@ -860,12 +860,8 @@ const MyCataLog = () => {
 
         {/* ADD DELETE CONFIRMATION MODAL */}
         {showDeleteModal && (
-          <div
-            className="relative z-50"
-            aria-labelledby="modal-title"
-            role="dialog"
-            aria-modal="true"
-          >
+          <div className="relative z-[1000]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
               <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -1097,12 +1093,8 @@ const MyCataLog = () => {
           {/* active cheemical add form  */}
 
           {isOpen && (
-            <div
-              class="relative z-10"
-              aria-labelledby="modal-title"
-              role="dialog"
-              aria-modal="true"
-            >
+            <div className="relative z-[1000]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
               <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
               <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -1176,12 +1168,8 @@ const MyCataLog = () => {
           )}
 
           {packageExpire && (
-            <div
-              class="relative z-10"
-              aria-labelledby="modal-title"
-              role="dialog"
-              aria-modal="true"
-            >
+            <div className="relative z-[1000]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
               <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
               <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -1217,12 +1205,8 @@ const MyCataLog = () => {
           )}
 
           {notPremium && (
-            <div
-              class="relative z-10"
-              aria-labelledby="modal-title"
-              role="dialog"
-              aria-modal="true"
-            >
+            <div className="relative z-[1000]" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
               <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
               <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -1287,12 +1271,13 @@ const MyCataLog = () => {
                               )}
                             </td>
                             <td className="ps-2 pe-6 py-2 sm:flex flex-col justify-center w-[200px] hidden sm:block">
-                              <div className="relative w-full flex justify-center">
+                              {/* Inside image container in your table */}
+                              <div className="relative w-full flex justify-center z-0">  {/* changed z-index */}
                                 <div
                                   className="absolute inset-0 bg-center bg-contain bg-no-repeat z-0"
                                   style={{
                                     backgroundImage: `url(${chemicalLogo})`,
-                                    opacity: 0.7, // Make background logo semi-transparent
+                                    opacity: 0.7,
                                   }}
                                 ></div>
                                 <img
@@ -1308,13 +1293,10 @@ const MyCataLog = () => {
                                 />
                                 <button
                                   onClick={(event) =>
-                                    handleDownload(
-                                      item.productDetails?.[0]?.structure,
-                                      event
-                                    )
+                                    handleDownload(item.productDetails?.[0]?.structure, event)
                                   }
                                   disabled={downloading}
-                                  className="absolute top-0 right-0 bg-gray-200 hover:bg-gray-300 rounded p-1 z-20"
+                                  className="absolute top-0 right-0 bg-gray-200 hover:bg-gray-300 rounded p-1 z-[2]" // reduced z-index
                                   title="Download image"
                                 >
                                   <svg
@@ -1333,6 +1315,7 @@ const MyCataLog = () => {
                                   </svg>
                                 </button>
                               </div>
+
                             </td>
 
                             <td className=" pe-6 py-2 flex flex-col justify-center gap-3">
