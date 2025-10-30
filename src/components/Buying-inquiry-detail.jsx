@@ -4078,8 +4078,7 @@ const Buying_inquiry_detail = () => {
                             <option value="DDP - Delivered Duty Paid">
                               DDP - Delivered Duty Paid
                             </option>
-                          </select>
-                          <option value="FCA – Free Carrier">
+                             <option value="FCA – Free Carrier">
                             FCA – Free Carrier
                           </option>
                           <option value="FAS – Free Alongside Ship">
@@ -4100,6 +4099,8 @@ const Buying_inquiry_detail = () => {
                           <option value="DAP – Delivered At Place">
                             DAP – Delivered At Place
                           </option>
+                          </select>
+                         
                         </div>
                       </div>
                     </div>
